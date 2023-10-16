@@ -12,7 +12,6 @@ export default function App() {
   );
 
   useEffect(() => {
-    console.log("useeffect");
     const urlParams = new URLSearchParams(window.location.search);
     const cdly = urlParams.get("cdly");
     const gcal = urlParams.get("gcal");
@@ -24,7 +23,6 @@ export default function App() {
 
   // share same button handler for both sides -- probably not a good idea
   function submitButtonHandler() {
-    console.log("submitButtonHandler");
     const stateParts: string[] = [];
 
     if (calendlyUrl) {
