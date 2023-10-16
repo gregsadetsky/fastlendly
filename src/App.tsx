@@ -145,7 +145,7 @@ export default function App() {
                   Google Calendar!
                 </p>
                 <p className="text-sm">
-                  You are the only one seeing your calendar because you are
+                  You are the only one seeing your calendar here because you are
                   logged into your Google account.
                 </p>
                 <p className="text-sm">
