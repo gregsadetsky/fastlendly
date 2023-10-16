@@ -25,6 +25,10 @@ npm run dev
 git add/commit/push
 ```
 
+### TODO
+
+- mobile support is wonky -- could show iframes stacked one on top of another -- but this would still be microscopic on a phone!
+
 ### huh
 
 this was made while I was at the [Recurse Center](https://www.recurse.com/)

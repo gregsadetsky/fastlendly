@@ -78,7 +78,7 @@ export default function App() {
             See a Calendly page side-by-side with Google Calendar
           </p>
           {!showCalendlyIframe && !showGoogleCalendarIframe && (
-            <p className="my-2 text-center text-sm text-gray-600">
+            <p className="my-2 text-center text-sm text-purple-600">
               <b>Fill either one (or both) of the fields below</b>
             </p>
           )}
@@ -117,7 +117,7 @@ export default function App() {
                   htmlFor="google-calendar"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Google Calendar Email Address
+                  Your Google Calendar Email Address
                 </label>
                 <div className="mt-1">
                   <input
