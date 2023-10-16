@@ -6,7 +6,7 @@ a fast way to see someone's (or your) Calendly page and your Google Calendar sid
 
 - install:
 
-```
+```bash
 npm install
 # configure husky so that building can be automated
 npm run prepare
@@ -14,14 +14,14 @@ npm run prepare
 
 - dev:
 
-```
+```bash
 npm run dev
 ```
 
 - deploy -- git committing should build a new version (this is done using husky)
   - make sure that you ran `npm run prepare` - this will install the husky git pre-commit hook
 
-```
+```bash
 git add/commit/push
 ```
 
