@@ -142,7 +142,7 @@ export default function App() {
               <div className="mt-3">
                 <p className="text-sm">
                   Important note: Fastlendly does <b>not</b> have access to your
-                  Google Calendar.
+                  Google Calendar!
                 </p>
                 <p className="text-sm">
                   You are the only one seeing your calendar because you are
