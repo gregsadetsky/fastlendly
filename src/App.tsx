@@ -39,7 +39,6 @@ export default function App() {
     // urlencode calendlyurl if present
     // urlencode google calendar email if present
     // use replacestate
-
     window.history.replaceState(
       {},
       "",
@@ -53,6 +52,15 @@ export default function App() {
         <h1 className="text-black text-3xl">Fastlendly</h1>
         <p>
           See someone's Calendly with your own Google Calendar side by side!
+          <br />
+          Questions?{" "}
+          <a
+            className="underline text-blue-500"
+            href="mailto:hi@greg.technology"
+          >
+            Email me
+          </a>
+          .
         </p>
       </div>
 
