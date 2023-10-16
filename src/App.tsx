@@ -7,6 +7,9 @@ export default function App() {
   const [googleCalendarEmail, setGoogleCalendarEmail] = useState("");
   const [showGoogleCalendarIframe, setShowGoogleCalendarIframe] =
     useState(false);
+  const [copyPageUrlButtonName, setCopyPageUrlButtonName] = useState(
+    "Copy this page URL!",
+  );
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -35,15 +38,8 @@ export default function App() {
       stateParts.push(`gcal=${encodeURIComponent(googleCalendarEmail)}`);
     }
 
-    // build new state
-    // urlencode calendlyurl if present
-    // urlencode google calendar email if present
-    // use replacestate
-    window.history.replaceState(
-      {},
-      "",
-      `?${stateParts.join("&")}`, // ?cdly=...&gcal=...
-    );
+    const pageUrl = `?${stateParts.join("&")}`; // ?cdly=...&gcal=...
+    window.history.replaceState({}, "", pageUrl);
   }
 
   return (
@@ -51,7 +47,7 @@ export default function App() {
       <div className="w-full bg-red-100 p-4 text-center border-b border-black">
         <h1 className="text-black text-3xl">Fastlendly</h1>
         <p>
-          See someone's Calendly with your own Google Calendar side by side!
+          See a Calendly page side-by-side with Google Calendar!
           <br />
           Questions?{" "}
           <a
@@ -60,8 +56,38 @@ export default function App() {
           >
             Email me
           </a>
-          .
+          . I make{" "}
+          <a
+            className="underline text-blue-500"
+            href="https://recurse.greg.technology/"
+            target="_blank"
+          >
+            other things
+          </a>{" "}
+          too.
         </p>
+        {}
+        <div>
+          {showCalendlyIframe || showGoogleCalendarIframe ? (
+            <div className="mt-3">
+              <button
+                className="bg-blue-500 text-white px-2 py-1 rounded-md"
+                onClick={() => {
+                  navigator.clipboard.writeText(window.location.href);
+                  // change button name
+                  setCopyPageUrlButtonName("Copied!");
+                  setTimeout(() => {
+                    setCopyPageUrlButtonName("Copy this page URL!");
+                  }, 2000);
+                }}
+              >
+                {copyPageUrlButtonName}
+              </button>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
 
       <div className="flex flex-col md:flex-row h-full">
@@ -145,13 +171,13 @@ export default function App() {
               </div>
               <div className="mt-3">
                 <p className="text-sm mb-3">
-                  Important note: Fastlendly does <b>not</b> have access to your
+                  Important: Fastlendly does <b>not</b> have access to your
                   Google Calendar!
                 </p>
                 <p className="text-sm">
                   You are seeing your calendar because you are logged into your
                   Google account. You can try this page in an Incognito window
-                  to see that your calendar does not show up.
+                  to see that your calendar won't show up.
                 </p>
               </div>
             </div>
