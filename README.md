@@ -4,16 +4,24 @@ a fast way to see someone's (or your ) Calendly page and your Google Calendar si
 
 ### how to run/deploy
 
+- install:
+
+```
+npm install
+# configure husky so that building can be automated
+npm run prepare
+```
+
 - dev:
 
 ```
 npm run dev
 ```
 
-- deploy:
+- deploy -- git committing should build a new version (this is done using husky)
+  - make sure that you ran `npm run prepare` - this will install the husky git pre-commit hook
 
 ```
-npm run build
 git add/commit/push
 ```
 
