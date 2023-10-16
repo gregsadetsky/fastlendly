@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function App() {
   const [calendlyUrl, setCalendlyUrl] = useState("");
@@ -8,14 +8,43 @@ export default function App() {
   const [showGoogleCalendarIframe, setShowGoogleCalendarIframe] =
     useState(false);
 
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const cdly = urlParams.get("cdly");
+    const gcal = urlParams.get("gcal");
+    setCalendlyUrl(cdly ? `https://calendly.com/${cdly}` : "");
+    setGoogleCalendarEmail(gcal ? gcal : "");
+    setShowCalendlyIframe(!!cdly);
+    setShowGoogleCalendarIframe(!!gcal);
+  }, []);
+
   // share same button handler for both sides -- probably not a good idea
   function submitButtonHandler() {
+    const stateParts: string[] = [];
+
     if (calendlyUrl) {
       setShowCalendlyIframe(true);
+      stateParts.push(
+        `cdly=${encodeURIComponent(
+          calendlyUrl.replace(/^https:\/\/calendly.com\//, ""),
+        )}`,
+      );
     }
     if (googleCalendarEmail) {
       setShowGoogleCalendarIframe(true);
+      stateParts.push(`gcal=${encodeURIComponent(googleCalendarEmail)}`);
     }
+
+    // build new state
+    // urlencode calendlyurl if present
+    // urlencode google calendar email if present
+    // use replacestate
+
+    window.history.replaceState(
+      {},
+      "",
+      `?${stateParts.join("&")}`, // ?cdly=...&gcal=...
+    );
   }
 
   return (
