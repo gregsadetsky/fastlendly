@@ -64,10 +64,10 @@ export default function App() {
         </p>
       </div>
 
-      <div className="flex h-full">
+      <div className="flex flex-col md:flex-row h-full">
         <div
-          className={`w-1/2 flex flex-col items-center justify-center border-r border-black ${
-            showCalendlyIframe ? "" : "bg-green-100"
+          className={`h-1/2 md:h-full w-full md:w-1/2 flex flex-col items-center justify-center md:border-r border-b md:border-b-0 md:py-0 border-black ${
+            showCalendlyIframe ? "" : "bg-green-100 py-6"
           }`}
         >
           {showCalendlyIframe ? (
@@ -78,7 +78,7 @@ export default function App() {
               height="100%"
             ></iframe>
           ) : (
-            <>
+            <div className="max-w-xl px-4">
               <div>Enter a Calendly URL here:</div>
               <div>
                 <input
@@ -102,11 +102,15 @@ export default function App() {
                   Submit
                 </button>
               </div>
-            </>
+            </div>
           )}
         </div>
 
-        <div className="w-1/2 bg-blue-100 flex flex-col items-center justify-center">
+        <div
+          className={`h-1/2 md:h-full w-full md:w-1/2 flex flex-col items-center justify-center md:py-0 ${
+            showGoogleCalendarIframe ? "" : "bg-blue-100 py-6"
+          }`}
+        >
           {showGoogleCalendarIframe ? (
             <iframe
               title="google-calendar"
@@ -115,7 +119,7 @@ export default function App() {
               height="100%"
             ></iframe>
           ) : (
-            <>
+            <div className="max-w-xl px-4">
               <div>Enter your Google Calendar email address here:</div>
               <div>
                 <input
@@ -140,20 +144,17 @@ export default function App() {
                 </button>
               </div>
               <div className="mt-3">
-                <p className="text-sm">
+                <p className="text-sm mb-3">
                   Important note: Fastlendly does <b>not</b> have access to your
                   Google Calendar!
                 </p>
                 <p className="text-sm">
-                  You are the only one seeing your calendar here because you are
-                  logged into your Google account.
-                </p>
-                <p className="text-sm">
-                  You can try this page in an Incognito window and see that your
-                  calendar does not show up.
+                  You are seeing your calendar because you are logged into your
+                  Google account. You can try this page in an Incognito window
+                  to see that your calendar does not show up.
                 </p>
               </div>
-            </>
+            </div>
           )}
         </div>
       </div>
